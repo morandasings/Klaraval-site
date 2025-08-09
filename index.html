@@ -1,53 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>KlaraVal – Snabbaste vägen till rätt verktyg</title>
+  <meta name="description" content="Snabba, sakliga rekommendationer för svenska företag. Programmatisk SEO + affiliates.">
+  <link rel="canonical" href="https://morandasings.github.io/Klaraval-site/">
+
+  <!-- Premium-typsnitt -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <!-- Header -->
-    <header>
-      <div class="logo">KlaraVal</div>
-      <button>Sitemap</button>
-    </header>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/Klaraval-site/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">KlaraVal</span>
+      </a>
+      <nav class="nav">
+        <a class="nav-link" href="#offers">Rekommendationer</a>
+        <a class="nav-link" href="/Klaraval-site/sitemap.xml">Sitemap</a>
+      </nav>
+    </div>
+  </header>
 
+  <main class="wrap">
     <!-- Hero -->
     <section class="hero">
-      <h1>Snabbaste vägen till rätt verktyg</h1>
-      <p>Programmatisk SEO + affiliates. Varje sida genereras från Google Sheets och optimeras utifrån faktisk CTR och konvertering.</p>
-      <div class="badges">
-        <span class="badge">AI-drivet</span>
-        <span class="badge">300+ sidor</span>
-        <span class="badge">High-ticket</span>
+      <p class="eyebrow">Svenska rekommendationer • Uppdateras automatiskt</p>
+      <h1>Snabbaste vägen till <span class="accent">rätt verktyg</span></h1>
+      <p class="lead">Varje sida genereras från Google Sheets och optimeras utifrån verklig CTR/konvertering – inget fluff, bara val som presterar.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#offers">Utforska rekommendationer</a>
+        <a class="btn btn-ghost" href="/Klaraval-site/robots.txt">robots.txt</a>
       </div>
+      <ul class="kpis">
+        <li><strong>AI-drivet</strong><span>agentflöden</span></li>
+        <li><strong>300+ sidor</strong><span>programmatisk SEO</span></li>
+        <li><strong>High-ticket</strong><span>fokus först</span></li>
+      </ul>
     </section>
 
-    <!-- Cards -->
-    <section class="cards">
-      <div class="card">
+    <!-- Features (designer-pondus) -->
+    <section class="features">
+      <article class="feat">
+        <div class="feat-icon">⚡</div>
+        <h3>Hastighet</h3>
+        <p>Snabb överblick → tydliga val → färre felköp.</p>
+      </article>
+      <article class="feat">
+        <div class="feat-icon">🎯</div>
+        <h3>Precision</h3>
+        <p>Datadrivna listor och jämförelser – inga gissningar.</p>
+      </article>
+      <article class="feat">
+        <div class="feat-icon">💎</div>
+        <h3>Kuraterat</h3>
+        <p>Endast verktyg som levererar värde i Sverige.</p>
+      </article>
+    </section>
+
+    <!-- Offers/cards -->
+    <section id="offers" class="cards">
+      <article class="card">
         <h3>Squarespace vs Wix</h3>
-        <p>Snabb jämförelse för svenska småföretag – mallar, pris, SEO.</p>
-        <a href="#">Läs jämförelse →</a>
-      </div>
-      <div class="card">
+        <p>Jämförelse för svenska småföretag – mallar, pris, SEO.</p>
+        <a class="chip" href="#">Läs jämförelse →</a>
+      </article>
+      <article class="card">
         <h3>Bästa nyhetsbrevsverktyget för nybörjare</h3>
-        <p>Svensk onboarding, bra mallar och en gratisnivå som räcker långt.</p>
-        <a href="#">Se topplistan →</a>
-      </div>
-      <div class="card">
+        <p>Svensk onboarding, bra mallar och stark gratisnivå.</p>
+        <a class="chip" href="#">Se topplistan →</a>
+      </article>
+      <article class="card">
         <h3>Alternativ till Shopify</h3>
         <p>Billigare start, enklare drift – våra topp 3 val.</p>
-        <a href="#">Utforska alternativ →</a>
-      </div>
+        <a class="chip" href="#">Utforska alternativ →</a>
+      </article>
     </section>
+  </main>
 
-    <!-- Footer -->
-    <footer>
-      © 2025 KlaraVal – Vissa länkar kan vara affiliatelänkar utan extra kostnad för dig.
-    </footer>
-  </div>
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <span>© 2025 KlaraVal</span>
+      <span class="muted">Vissa länkar kan vara affiliatelänkar – ingen extra kostnad för dig.</span>
+    </div>
+  </footer>
 </body>
 </html>
