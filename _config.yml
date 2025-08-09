@@ -1,5 +1,5 @@
 title: "KlaraVal"
 url: "https://morandasings.github.io"
-baseurl: "/Klaraval-site"   # OBS: stort K
+baseurl: "/Klaraval-site"   # Viktigt: stort K
 markdown: kramdown
 plugins: []
