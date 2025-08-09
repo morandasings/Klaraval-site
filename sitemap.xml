@@ -1,9 +1,13 @@
+---
+layout: null
+---
+
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>{{ site.url }}{{ site.baseurl }}/</loc></url>
-  {% for page in site.pages %}
-  {% if page.url contains '/content/' %}
-  <url><loc>{{ site.url }}{{ site.baseurl }}{{ page.url | replace:'index.html','' }}</loc></url>
-  {% endif %}
+  {% assign content_pages = site.pages | where_exp: "p", "p.path contains 'site/content/'" %}
+  {% for page in content_pages %}
+    {% assign loc = page.url | replace:'index.html','' %}
+    <url><loc>{{ site.url }}{{ site.baseurl }}{{ loc }}</loc></url>
   {% endfor %}
 </urlset>
