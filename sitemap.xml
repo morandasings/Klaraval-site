@@ -1,16 +1,25 @@
 ---
-layout: null
+layout: none
+permalink: /sitemap.xml
 ---
-
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Startsida -->
-  <url><loc>{{ site.url }}{{ site.baseurl }}/</loc></url>
+  <!-- startsidan -->
+  <url>
+    <loc>{{ site.url }}{{ site.baseurl }}/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-  <!-- Alla sidor som innehåller /content/ i sökvägen -->
-  {% assign content_pages = site.pages | where_exp: "p", "p.path contains 'content/'" %}
-  {% for page in content_pages %}
-    {% assign loc = page.url | replace:'index.html','' %}
-    <url><loc>{{ site.url }}{{ site.baseurl }}{{ loc }}</loc></url>
+  <!-- alla sidor (exkludera robots/sitemap/css) -->
+  {% for page in site.pages %}
+    {% assign p = page.url | downcase %}
+    {% if p != '/sitemap.xml' and p != '/robots.txt' and p != '/styles.css' %}
+      <url>
+        <loc>{{ site.url }}{{ site.baseurl }}{{ page.url }}</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+      </url>
+    {% endif %}
   {% endfor %}
 </urlset>
