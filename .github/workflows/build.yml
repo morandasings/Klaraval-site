@@ -1,0 +1,41 @@
+name: Generate & Publish
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *"  # varje natt 03:00 UTC
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prep folders
+        run: |
+          mkdir -p data site/content
+
+      - name: Fetch Offers CSV
+        env: { OFFERS_CSV_URL: ${{ secrets.OFFERS_CSV_URL }} }
+        run: |
+          if [ -z "$OFFERS_CSV_URL" ]; then echo "ERROR: OFFERS_CSV_URL saknas"; exit 1; fi
+          curl -Lf "$OFFERS_CSV_URL" -o data/offers.csv
+          test -s data/offers.csv || (echo "ERROR: CSV tom/otillgänglig"; head -n 3 data/offers.csv; exit 1)
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+
+      - name: Generate pages + sitemap
+        run: |
+          python scripts/generate_pages.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "klara-bot"
+          git config user.email "bot@example.com"
+          git add -A
+          git commit -m "auto: generate $(date -u +%F)" || echo "no changes"
+          git push
