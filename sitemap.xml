@@ -1,9 +1,26 @@
+---
+layout: none
+---
+
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <!-- Startsidan -->
   <url>
     <loc>{{ site.url }}{{ site.baseurl }}/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- Alla genererade sidor under /site/content/ -->
+  {% for page in site.pages %}
+    {% if page.url contains '/content/' %}
+      <url>
+        <loc>{{ site.url }}{{ site.baseurl }}{{ page.url | replace:'index.html','' }}</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+      </url>
+    {% endif %}
+  {% endfor %}
+
 </urlset>
