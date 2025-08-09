@@ -1,34 +1,37 @@
-name: Generate & Publish
+name: Generate and publish pages
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 3 * * *"  # varje natt 03:00 UTC
+    - cron: '0 3 * * *'
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Prep folders
-        run: |
-          mkdir -p data site/content
-
-      - name: Fetch Offers CSV
-        env: { OFFERS_CSV_URL: ${{ secrets.OFFERS_CSV_URL }} }
-        run: |
-          if [ -z "$OFFERS_CSV_URL" ]; then echo "ERROR: OFFERS_CSV_URL saknas"; exit 1; fi
-          curl -Lf "$OFFERS_CSV_URL" -o data/offers.csv
-          test -s data/offers.csv || (echo "ERROR: CSV tom/otillgänglig"; head -n 3 data/offers.csv; exit 1)
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
-        with: { python-version: "3.11" }
+        with:
+          python-version: '3.11'
 
-      - name: Generate pages + sitemap
+      - name: Fetch Offers CSV
+        env:
+          OFFERS_CSV_URL: ${{ secrets.OFFERS_CSV_URL }}
+        run: |
+          mkdir -p data
+          if [ -z "$OFFERS_CSV_URL" ]; then
+            echo "ERROR: OFFERS_CSV_URL missing"; exit 1; fi
+          curl -Lf "$OFFERS_CSV_URL" -o data/offers.csv
+          test -s data/offers.csv || (echo "ERROR: CSV empty"; exit 1)
+          head -n 2 data/offers.csv || true
+
+      - name: Generate markdown pages
         run: |
           python scripts/generate_pages.py
 
@@ -37,5 +40,5 @@ jobs:
           git config user.name "klara-bot"
           git config user.email "bot@example.com"
           git add -A
-          git commit -m "auto: generate $(date -u +%F)" || echo "no changes"
+          git commit -m "auto: generate pages $(date -u +%F)" || echo "no changes"
           git push
