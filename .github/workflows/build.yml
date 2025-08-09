@@ -3,7 +3,7 @@ name: Generate and publish pages
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '0 3 * * *'   # kör 03:00 UTC dagligen
 
 permissions:
   contents: write
@@ -20,18 +20,24 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Prepare folders
+        run: |
+          mkdir -p data
+          mkdir -p site/content
+
       - name: Fetch Offers CSV
         env:
           OFFERS_CSV_URL: ${{ secrets.OFFERS_CSV_URL }}
         run: |
-          mkdir -p data
           if [ -z "$OFFERS_CSV_URL" ]; then
             echo "ERROR: OFFERS_CSV_URL missing"; exit 1; fi
           curl -Lf "$OFFERS_CSV_URL" -o data/offers.csv
           test -s data/offers.csv || (echo "ERROR: CSV empty"; exit 1)
           head -n 2 data/offers.csv || true
 
-      - name: Generate markdown pages
+      - name: Generate pages + sitemap
+        env:
+          BASE_URL: "https://morandasings.github.io/Klaraval-site"
         run: |
           python scripts/generate_pages.py
 
