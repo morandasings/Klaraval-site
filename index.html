@@ -1,11 +1,174 @@
-<!doctype html><html lang="sv"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KlaraVal – Snabbaste vägen till rätt verktyg</title>
-<meta name="description" content="Sakliga jämförelser och rekommendationer för svenska företag.">
-</head><body>
-<main>
-  <h1>KlaraVal</h1>
-  <p>Sidor genereras automatiskt varje natt från Google Sheet (Offers_Pages).</p>
-  <p><a href="/sitemap.xml">Sitemap</a></p>
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KlaraVal – Snabbaste vägen till rätt verktyg</title>
+  <meta name="description" content="Datadrivna rekommendationer för svenska företag. Jämförelser, alternativ och bäst-i-test – optimerat för klick som konverterar.">
+  <link rel="canonical" href="https://morandasings.github.io/Klaraval-site/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="KlaraVal – Snabbaste vägen till rätt verktyg">
+  <meta property="og:description" content="Sakliga jämförelser & rekommendationer, uppdateras automatiskt.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://morandasings.github.io/Klaraval-site/">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=KlaraVal">
+
+  <style>
+    :root{
+      --bg:#07090f;
+      --layer:#0c1020;
+      --glass:#0f1428cc;
+      --card:#111a34;
+      --line:#1f2b52;
+      --txt:#f2f6ff;
+      --muted:#a8b4d6;
+      --brand:#78c6ff;
+      --accent:#20e6a0;
+      --danger:#ff6b6b;
+      --radius:16px;
+      --shadow:0 18px 50px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:radial-gradient(1200px 800px at 10% -10%, #122041 0%, #07090f 60%);color:var(--txt);font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{opacity:.9}
+    .wrap{max-width:1180px;margin:0 auto;padding:18px}
+    /* Nav */
+    header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg, rgba(7,9,15,.85), rgba(7,9,15,.6));backdrop-filter: blur(10px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .logo{display:flex;align-items:center;gap:12px}
+    .badge{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--accent));box-shadow:var(--shadow)}
+    .brand{font-weight:800;letter-spacing:.2px}
+    .cta{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#6effd4);color:#05140f;font-weight:800;box-shadow:var(--shadow);border:none;cursor:pointer}
+    .cta:active{transform:translateY(1px)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:36px 0}
+    @media (max-width:900px){.hero{grid-template-columns:1fr}}
+    .panel{background:linear-gradient(180deg,#131a30,#0e1426);border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:var(--shadow)}
+    h1{font-size: clamp(32px, 4.5vw, 56px);line-height:1.05;margin:0 0 14px}
+    .lead{color:var(--muted);font-size:clamp(16px,2.2vw,18px);margin:0 0 20px}
+    .kpis{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px}
+    .kpi{background:#0d142a;border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-width:120px;text-align:center}
+    .kpi strong{font-size:20px}
+
+    /* Cards */
+    .section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}
+    .hint{color:var(--muted);font-size:14px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{position:relative;background:linear-gradient(180deg,#121a34,#0e152b);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow);overflow:hidden}
+    .card:before{content:"";position:absolute;inset:-1px;border-radius:18px;background:linear-gradient(140deg,rgba(124,198,255,.15),rgba(32,230,160,.08) 30%,transparent 60%);pointer-events:none}
+    .card h3{margin:0 0 8px;font-size:18px}
+    .chip{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#0c1327;color:#c7d3f5;font-size:12px}
+    .muted{color:var(--muted)}
+    .divider{height:1px;background:var(--line);border:0;margin:28px 0}
+
+    /* Footer */
+    .foot{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;margin:42px 0 24px;color:#99a8ce;font-size:14px}
+    .micro{font-size:12px;color:#8da0d1}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">
+      <div class="badge" aria-hidden="true"></div>
+      <div class="brand">KlaraVal</div>
+    </div>
+    <a class="chip" href="/Klaraval-site/sitemap.xml">Sitemap</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="panel">
+      <div class="chip">Svenska rekommendationer • Uppdateras automatiskt</div>
+      <h1>Snabbaste vägen till <span style="color:var(--brand)">rätt verktyg</span></h1>
+      <p class="lead">Programmatisk SEO + affiliates. Varje sida genereras från Google Sheets och optimeras utifrån faktisk CTR/konvertering.</p>
+      <button class="cta" onclick="document.getElementById('offers').scrollIntoView({behavior:'smooth'})">Visa rekommendationer</button>
+      <div class="kpis">
+        <div class="kpi"><strong>AI-drivet</strong><div class="micro">Agentflöden</div></div>
+        <div class="kpi"><strong>300+ sidor</strong><div class="micro">programmatisk</div></div>
+        <div class="kpi"><strong>High-ticket</strong><div class="micro">fokus först</div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3 style="margin-top:0">Hur maskinen funkar</h3>
+      <ol style="margin:0 0 6px 18px; color:#c8d3f1">
+        <li>Keywords & erbjudanden i Google Sheet</li>
+        <li>GitHub Actions bygger sidor varje natt</li>
+        <li>Data styr vilka val som lyfts</li>
+      </ol>
+      <p class="muted" style="margin-top:12px">Inga köpta omdömen. Tydlig affiliate-märkning. Rekommendationer styrs av nytta + pris + omdömen + test.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- OFFERS PLACEHOLDER -->
+  <section id="offers">
+    <div class="section-title">
+      <h2 style="margin:0">Aktuella rekommendationer</h2>
+      <span class="hint">Fyll <em>Offers_Pages</em> → kör Actions → korten uppdateras</span>
+    </div>
+
+    <div class="grid" id="offers-container">
+      <!-- Exempel-kort (ersätts av generatorn när data finns) -->
+      <article class="card">
+        <h3>Squarespace vs Wix</h3>
+        <p class="muted">Snabb jämförelse för svenska småföretag – mallar, pris, SEO.</p>
+        <a class="chip" href="#">Läs jämförelse →</a>
+      </article>
+      <article class="card">
+        <h3>Bästa nyhetsbrevsverktyget för nybörjare</h3>
+        <p class="muted">Svensk onboarding, bra mallar och en gratisnivå som räcker långt.</p>
+        <a class="chip" href="#">Se topplistan →</a>
+      </article>
+      <article class="card">
+        <h3>Alternativ till Shopify</h3>
+        <p class="muted">Billigare start, enklare drift – våra topp 3 val.</p>
+        <a class="chip" href="#">Utforska alternativ →</a>
+      </article>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FOOTER -->
+  <section class="foot">
+    <div>© 2025 KlaraVal</div>
+    <div>
+      <a href="/Klaraval-site/robots.txt">robots.txt</a> •
+      <a href="/Klaraval-site/sitemap.xml">sitemap.xml</a>
+    </div>
+  </section>
+  <p class="micro wrap">*Vissa länkar kan vara affiliatelänkar – ingen extra kostnad för dig.</p>
 </main>
-</body></html>
+
+<!-- GA4 – lägg in ditt Measurement ID när du har det -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date()); gtag('config', 'G-XXXXXXX');
+</script>
+-->
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "KlaraVal",
+  "url": "https://morandasings.github.io/Klaraval-site/",
+  "logo": "https://via.placeholder.com/300x100.png?text=KlaraVal"
+}
+</script>
+
+</body>
+</html>
