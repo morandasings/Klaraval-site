@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://morandasings.github.io/klaraval-site/sitemap.xml
