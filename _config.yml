@@ -1,0 +1,5 @@
+title: "KlaraVal"
+url: "https://DITT_ANV_NAMN.github.io"
+baseurl: "/klaraval-site"
+markdown: kramdown
+plugins: []
