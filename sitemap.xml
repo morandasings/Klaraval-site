@@ -1,10 +1,9 @@
 ---
-layout: none
+layout: null
 ---
 
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <!-- Startsidan -->
   <url>
     <loc>{{ site.url }}{{ site.baseurl }}/</loc>
@@ -12,15 +11,15 @@ layout: none
     <priority>1.0</priority>
   </url>
 
-  <!-- Alla genererade sidor under /site/content/ -->
+  <!-- Ev. genererade sidor under site/content/ -->
   {% for page in site.pages %}
-    {% if page.url contains '/content/' %}
+    {% assign p = page.path | downcase %}
+    {% if p contains 'site/content/' and page.name != 'index.html' %}
       <url>
         <loc>{{ site.url }}{{ site.baseurl }}{{ page.url | replace:'index.html','' }}</loc>
-        <changefreq>weekly</changefreq>
+        <changefreq>monthly</changefreq>
         <priority>0.8</priority>
       </url>
     {% endif %}
   {% endfor %}
-
 </urlset>
