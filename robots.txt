@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://morandasings.github.io/Klaraval-site/sitemap.xml
