@@ -1,8 +1,8 @@
 User-agent: *
 Allow: /
 
-# Blockera ev. adminsidor (framtidssäkert)
+# Ev. admin (framtidssäkert)
 Disallow: /admin/
 
-# Pekar på sitemap (OBS: exakt versal/versal som i _config.yml)
+# Pekar på sitemapen (notera versalt K i mappnamnet)
 Sitemap: https://morandasings.github.io/Klaraval-site/sitemap.xml
