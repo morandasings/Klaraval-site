@@ -1,8 +1,8 @@
+---
+layout: null
+---
+
 User-agent: *
 Allow: /
 
-# Ev. admin (framtidssäkert)
-Disallow: /admin/
-
-# Pekar på sitemapen (notera versalt K i mappnamnet)
-Sitemap: https://morandasings.github.io/Klaraval-site/sitemap.xml
+Sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml
