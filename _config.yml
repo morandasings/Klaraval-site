@@ -1,10 +1,5 @@
-title: "Klaraval Site"
-description: "Din beskrivning här"
-baseurl: "/Klaraval-site" # OBS! exakt samma versaler/gemener som repo-namnet
+title: "KlaraVal"
 url: "https://morandasings.github.io"
-
-# Andra inställningar du behöver
+baseurl: "/Klaraval-site"   # OBS: stort K
 markdown: kramdown
-theme: minima
-plugins:
-  - jekyll-sitemap
+plugins: []
