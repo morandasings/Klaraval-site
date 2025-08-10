@@ -3,3 +3,5 @@ url: "https://morandasings.github.io"
 baseurl: "/Klaraval-site"   # Viktigt: stort K
 markdown: kramdown
 plugins: []
+include:
+  - sitemap.xml
