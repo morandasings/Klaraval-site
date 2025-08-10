@@ -1,7 +1,15 @@
-title: "KlaraVal"
-url: "https://morandasings.github.io"
-baseurl: "/Klaraval-site"   # Viktigt: stort K
-markdown: kramdown
-plugins: []
-include:
-  - sitemap.xml
+title: KlaraVal
+description: Snabbaste vägen till rätt verktyg
+url: https://morandasings.github.io
+baseurl: /Klaraval-site
+
+theme: minima
+
+plugins:
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules
